@@ -1,13 +1,13 @@
 // Declare methods
 event_user(15);
 
-face = 1;
+currentHeld = 0;
 
+face = 1;
 spd = 100;
 
 hspd			= 0;
 vspd			= 0;
-
 xx				= 0;
 yy				= 0;
 
@@ -29,6 +29,13 @@ fsm
 		draw_sprite_ext(sPlantable,0,toTile(x),toTile(y),1,1,0,c_white,0.6);
 		
 		draw_sprite_ext(sprite_index, image_index, x, y, face * image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+		
+		var _held = global.playerInv[currentHeld];
+		if (_held != -1){
+			var _id = _held.id[$ global.settings.language];
+
+			draw_sprite_ext(asset_get_index("spr_"+_id),0,x,y,1,1,340,c_white,1);
+		}
 	})
 	.add("idle",{
 		enter : function(){

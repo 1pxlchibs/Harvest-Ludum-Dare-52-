@@ -21,6 +21,8 @@ global.settings = {
 	
 	guiResW : global.resolution[other.resolutionSelected][0],
 	guiResH : global.resolution[other.resolutionSelected][1],
+	
+	language : "eng"
 }
 #endregion
 
@@ -30,6 +32,14 @@ global.inventoryManager = {
 	itemOldPos : -1,
 	itemOldInventory : -1
 }
+
+global.playerInv = array_create(16,-1);
+
+
+player_inventory = inventory_create(0,0,global.playerInv);
+
+inventory_add(global.playerInv,get_item("cabbage_seeds"),4);
+inventory_add(global.playerInv,get_item("carrot_seeds"),8);
 #endregion
 
 instance_create_depth(0,0,D_CAMERA,oCamera);

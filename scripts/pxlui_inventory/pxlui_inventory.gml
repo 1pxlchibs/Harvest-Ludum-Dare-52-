@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function UIInventory(x, y, width, height, halign = fa_middle, valign = fa_middle){
+function UIElement(x, y, width, height, halign = fa_middle, valign = fa_middle){
 	return {
 		object: pPXLUIElement,
 		xx : x,

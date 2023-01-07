@@ -49,7 +49,9 @@ get_move = function(){
 
 dig_spot = function(x, y){
 	if (!collision_point(toTile(x)+1, toTile(y)+1, oPlantable, true, false)){
-		instance_create_layer(toTile(x),toTile(y),"PlantableLand",oPlantable);
+		instance_create_layer(toTile(x),toTile(y),"PlantableLand",oPlantable,{
+			plant: {}
+		});
 	}
 }
 	

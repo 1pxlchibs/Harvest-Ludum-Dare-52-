@@ -17,7 +17,8 @@ drawGUI = function(){
 	draw_set_alpha(1);
 	
 	if (global.inventoryManager.itemCurrent != -1){
-		draw_text(oCursor.xGui, oCursor.yGui, global.inventoryManager.itemCurrent.id);
+		var _string = global.inventoryManager.itemCurrent.name[$ global.settings.language];
+		draw_text(oCursor.xGui, oCursor.yGui, _string);
 		
 		if (global.inventoryManager.itemCurrent.stack > 1){
 			draw_text(oCursor.xGui, oCursor.yGui+10, string(global.inventoryManager.itemCurrent.stack));

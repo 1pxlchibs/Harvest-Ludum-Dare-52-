@@ -28,8 +28,8 @@
   "creationCodeFile": "",
   "inheritCode": false,
   "instanceCreationOrder": [
-    {"name":"inst_3675FB26","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_2704BBDB","path":"rooms/Room1/Room1.yy",},
+    {"name":"inst_3675FB26","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_73651F67","path":"rooms/Room1/Room1.yy",},
   ],
   "inheritCreationOrder": false,
