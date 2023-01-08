@@ -42,7 +42,8 @@ function inventory_add(array, _struct, amount = 1){
 	}
 	
 	
-	if (fail = false){
+	if (!fail){
+		_struct.stack = amount;
 		array[i] = _struct;
 		
 		if (stack){
@@ -63,6 +64,22 @@ function inventory_add(array, _struct, amount = 1){
 
 }
 
-function inventory_remove_pos(array, _pos){
-	array[_pos] = -1;
+function inventory_remove_pos(array, pos, amount = 1){
+	var _struct = array[pos];
+	
+	if (_struct != -1){
+		var _amount = _struct.stack;
+		
+		if (amount <= _amount){
+			array[pos].stack -= amount;
+		}
+		
+		if (_amount <= 0){
+			array[pos] = -1;
+		}
+	}
+}
+
+function inventory_get(array, pos){
+	return array[pos];
 }

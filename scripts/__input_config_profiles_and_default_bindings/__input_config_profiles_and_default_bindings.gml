@@ -18,10 +18,9 @@ INPUT_DEFAULT_PROFILES = {
         left:  [input_binding_key(vk_left),  input_binding_key("A")],
         right: [input_binding_key(vk_right), input_binding_key("D")],
 		
-        interact: input_binding_key("F"),
-        jump: input_binding_key(vk_space),
-	
-		sprint: input_binding_key(vk_shift),
+        interact: input_binding_key("E"),
+		nextItem: input_binding_mouse_wheel_down(),
+		previousItem: input_binding_mouse_wheel_up(),
         
         accept:  input_binding_key(vk_space),
         cancel:  input_binding_key(vk_backspace),
@@ -30,7 +29,7 @@ INPUT_DEFAULT_PROFILES = {
         
         //No aiming verbs since we use the mouse for that (see below for aiming verb examples)
         shoot: input_binding_mouse_button(mb_left),
-	alt_shoot: input_binding_mouse_button(mb_right),
+		alt_shoot: input_binding_mouse_button(mb_right),
         
         pause: input_binding_key(vk_escape),
     },

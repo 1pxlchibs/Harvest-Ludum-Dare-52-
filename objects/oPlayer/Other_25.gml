@@ -48,10 +48,23 @@ get_move = function(){
 }
 
 dig_spot = function(x, y){
-	if (!collision_point(toTile(x)+1, toTile(y)+1, oPlantable, true, false)){
-		instance_create_layer(toTile(x),toTile(y),"PlantableLand",oPlantable,{
-			plant: {}
-		});
+	if (!collision_point(interactX+1, interactY+1, oFarmland, true, false)){
+		instance_create_layer(interactX,interactY,"PlantableLand",oFarmland);
+	}
+}
+
+plant_spot = function(x, y){
+	var _inst = collision_point(interactX+1, interactY+1, oFarmland, true, false);
+	if (_inst != noone){
+		with(_inst){
+			if (plant = -1){
+				day = global.time.day;
+				plant = pxldata_get_item(global.playerInv[other.currentHeld].id);
+				inventory_remove_pos(global.playerInv, other.currentHeld);
+			}
+		}
+		
+		show_debug_message(string(_inst));
 	}
 }
 	

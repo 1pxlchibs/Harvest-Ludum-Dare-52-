@@ -37,8 +37,3 @@ if (array_length(element_pos) > 0){
 	element_pos[0].hover = true;
 	element_pos = [];
 }
-
-
-if (input_check_pressed("up")){
-	cursorScan();	
-}

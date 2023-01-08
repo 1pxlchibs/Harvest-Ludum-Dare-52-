@@ -132,7 +132,7 @@ drawGUI = function(){
 	if (inventoryRef[inventoryPos] != -1){
 		draw_set_halign(fa_middle);
 		draw_set_valign(fa_middle);
-		var _string = inventoryRef[inventoryPos].name[$ global.settings.language];
+		var _string = inventoryRef[inventoryPos].name;
 		draw_text(x, y, _string);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_top);

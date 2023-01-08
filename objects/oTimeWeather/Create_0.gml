@@ -5,7 +5,7 @@ global.time = {
 }
 
 gameTimer = time_source_create(time_source_game, 2, time_source_units_seconds, function(){
-	global.time.minute++;
+	global.time.minute+=10;
 	
 	if (global.time.minute =  60){
 		global.time.minute = 0;
