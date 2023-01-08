@@ -27,7 +27,7 @@ fsm = new SnowState("idle");
 fsm
 	.event_set_default_function("draw",function() {
 		//draw this no matter what state we are in
-		var _held = inventory_get(global.playerInv,currentHeld);
+		var _held = pxl_inventory_get(global.playerInv,currentHeld);
 				
 		interactXLerp = lerp(interactXLerp,interactX,0.3);
 		interactYLerp = lerp(interactYLerp,interactY,0.3);

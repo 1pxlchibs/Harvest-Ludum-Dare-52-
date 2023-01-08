@@ -7,3 +7,5 @@ timers = new PXLTimer();
 timers.add("stage_cooldown",1);
 
 plant = -1;
+
+grown = false;

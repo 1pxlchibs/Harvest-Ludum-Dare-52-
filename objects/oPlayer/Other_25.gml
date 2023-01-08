@@ -47,27 +47,42 @@ get_move = function(){
 	x+=hspd;	
 }
 
-dig_spot = function(x, y){
-	if (!collision_point(interactX+1, interactY+1, oFarmland, true, false)){
-		instance_create_layer(interactX,interactY,"PlantableLand",oFarmland);
-	}
-}
-
-plant_spot = function(x, y){
-	var _inst = collision_point(interactX+1, interactY+1, oFarmland, true, false);
-	if (_inst != noone){
-		with(_inst){
-			if (plant = -1){
-				day = global.time.day;
-				plant = pxldata_get_item(global.playerInv[other.currentHeld].id);
-				inventory_remove_pos(global.playerInv, other.currentHeld);
-			}
+switch_held = function(){
+	if (input_check("nextItem")){
+		currentHeld++;
+		if (currentHeld > 3){
+			currentHeld = 0;
 		}
 		
-		show_debug_message(string(_inst));
+		update_held();
+	}
+
+	if (input_check("previousItem")){
+		currentHeld--;
+		if (currentHeld < 0){
+			currentHeld = 3;
+		}
+		
+		update_held();
+	}	
+}
+
+update_held = function(){
+	instance_destroy(oHeld);
+	
+	var _struct = pxl_inventory_get(global.playerInv,currentHeld);
+	if (_struct != -1){
+		if (!instance_exists(oHeld)){
+			with(instance_create_depth(x,y,-y,oHeld)){
+				item_struct = pxl_inventory_get(global.playerInv,other.currentHeld);
+			}
+		} else{
+			if (pxl_inventory_get(global.playerInv,currentHeld).id != oHeld.item_struct.id){
+				item_struct = pxl_inventory_get(global.playerInv,currentHeld);
+			}
+		}
 	}
 }
-	
 //set_direction_sprite = function(){
 //	if (vspd <= 0 and hspd = 0){
 //		sprite_index = get_sprite("run_back");

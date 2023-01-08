@@ -10,11 +10,7 @@ for(var i = 0; i < array_length(inventory); i++;){
 }
 
 drawGUI = function(){
-	draw_set_color(c_black);
-	draw_set_alpha(0.5);
-	draw_rectangle(0, 0, global.settings.inGameResW, global.settings.inGameResH, false);
-	draw_set_color(c_white);
-	draw_set_alpha(1);
+
 	
 	if (global.inventoryManager.itemCurrent != -1){
 		var _string = global.inventoryManager.itemCurrent.name;

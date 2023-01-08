@@ -35,11 +35,11 @@ global.inventoryManager = {
 
 global.playerInv = array_create(16,-1);
 
-player_inventory = inventory_create(10,50,global.playerInv);
+player_inventory = pxl_inventory_create(10,50,global.playerInv);
 
-inventory_add(global.playerInv,pxldata_get_item("hoe"),1);
-inventory_add(global.playerInv,pxldata_get_item("cabbage_seeds"),4);
-inventory_add(global.playerInv,pxldata_get_item("carrot_seeds"),8);
+pxl_inventory_add(global.playerInv,pxl_data_get_item("hoe"),1);
+pxl_inventory_add(global.playerInv,pxl_data_get_item("strawberry_seeds"),4);
+pxl_inventory_add(global.playerInv,pxl_data_get_item("carrot_seeds"),8);
 #endregion
 
 instance_create_depth(0,0,D_CAMERA,oCamera);
@@ -48,5 +48,3 @@ instance_create_depth(0,0,D_GUI_OVERTOP,oParticleManager);
 instance_create_depth(0,0,D_GUI_OVERTOP,oTimeWeather);
 
 bulbRenderer = new BulbRenderer(#f9c57d, BULB_MODE.HARD_BM_ADD, true);
-
-global.planters = array_create();

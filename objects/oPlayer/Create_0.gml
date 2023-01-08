@@ -18,31 +18,24 @@ interactXLerp = x;
 interactYLerp = y;
 
 init_sprite();
+update_held();
 
 sprite_index = get_sprite("idle");
 
 timers = new PXLTimer();
 
-timers.add("dig",0.5*game_get_speed(gamespeed_fps));
+timers.add("interact",0.3*game_get_speed(gamespeed_fps));
 
 fsm = new SnowState("idle");
 
 fsm
 	.event_set_default_function("draw",function() {
 		//draw this no matter what state we are in
-		var _held = inventory_get(global.playerInv,currentHeld);
-				
-		interactXLerp = lerp(interactXLerp,interactX,0.3);
-		interactYLerp = lerp(interactYLerp,interactY,0.3);
-		draw_sprite_ext(sPlantable,0,interactXLerp,interactYLerp,1,1,0,c_white,0.6);
-
-		
-		draw_sprite_ext(sprite_index, image_index, x, y, face * image_xscale, image_yscale, image_angle, image_blend, image_alpha);
-		
-		if (_held != -1){
-			var _id = _held.id;
-			draw_sprite_ext(asset_get_index("spr_"+_id),0,x,y,face * 1,1,340,c_white,1);
+		if (instance_exists(oHeld)){
+			draw_sprite_ext(sPlantable,0,oHeld.interact_x_lerp,oHeld.interact_y_lerp,1,1,0,c_white,0.6);
 		}
+
+		draw_sprite_ext(sprite_index, image_index, x, y, face * image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 	})
 	.add("idle",{
 		enter : function(){
@@ -50,29 +43,15 @@ fsm
 			image_index = 0;
 		},
 		step : function(){
-			interactX = toTile(oCursor.x);
-			interactY = toTile(oCursor.y);
-
-			interactX = clamp(interactX,toTile(x-16),toTile(x+16));
-			interactY = clamp(interactY,toTile(y-16),toTile(y+16));
-			
 			set_facing();
 			get_input();
 			
-			var _held = inventory_get(global.playerInv,currentHeld);
-			if (_held != -1){
+			switch_held();
+			
+			if (instance_exists(oHeld)){
 				if (input_check_pressed("shoot")){
-					var _id = _held.id;
-					
-					if (_id = "hoe"){
-						fsm.change("dig");
-						return;
-					}
-				
-					if (_held.type = "crop"){
-						fsm.change("plant");
-						return;
-					}
+					fsm.change("interact");
+					return;
 				}
 			}
 		}
@@ -82,26 +61,12 @@ fsm
 			image_index = 0;
 		},
 		step : function(){
-			interactX = toTile(oCursor.x);
-			interactY = toTile(oCursor.y);
-
-			interactX = clamp(interactX,toTile(x-16),toTile(x+16));
-			interactY = clamp(interactY,toTile(y-16),toTile(y+16));
-
-			var _held = inventory_get(global.playerInv,currentHeld);
-			if (_held != -1){
+			switch_held();
+			
+			if (instance_exists(oHeld)){
 				if (input_check_pressed("shoot")){
-					var _id = _held.id;
-					
-					if (_id = "hoe"){
-						fsm.change("dig");
-						return;
-					}
-				
-					if (_held.type = "crop"){
-						fsm.change("plant");
-						return;
-					}
+					fsm.change("interact");
+					return;
 				}
 			}
 			
@@ -121,28 +86,18 @@ fsm
 			vspd = lengthdir_y(_spd*delta_time_get(),direction);
 		},
 	})
-	.add("dig",{
+	.add("interact",{
 		enter : function(){
+			with(oHeld){
+				use = true;
+			}
 			image_index = 0;
 		},
 		step : function(){
-			if (timers.step("dig", true)){
-				dig_spot(x,y);
-				
+			if (timers.step("interact", true)){
 				fsm.change("idle");
 				return;
 			}
-		}
-	})
-	.add("plant",{
-		enter : function(){
-			image_index = 0;
-		},
-		step : function(){
-			plant_spot(x,y);
-				
-			fsm.change("idle");
-			return;
 		}
 	})
 	.add_transition("t_run","idle","run",function(){
