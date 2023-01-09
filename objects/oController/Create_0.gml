@@ -38,7 +38,7 @@ global.playerInv = array_create(16,-1);
 player_inventory = pxl_inventory_create(10,50,global.playerInv);
 
 pxl_inventory_add(global.playerInv,pxl_data_get_item("hoe"),1);
-pxl_inventory_add(global.playerInv,pxl_data_get_item("solar_panel"),2);
+pxl_inventory_add(global.playerInv,pxl_data_get_item("solar_panel_1"),2);
 pxl_inventory_add(global.playerInv,pxl_data_get_item("carrot_seeds"),8);
 pxl_inventory_add(global.playerInv,pxl_data_get_item("potato_seeds"),4);
 #endregion
@@ -56,4 +56,5 @@ timers.add("lootpitch",2*game_get_speed(gamespeed_fps));
 
 lootpitch = 1;
 
+money = 0;
 power_level = 0;

@@ -1,10 +1,10 @@
 {
   "resourceType": "GMTileSet",
   "resourceVersion": "1.0",
-  "name": "tsGround",
+  "name": "tsGrass",
   "spriteId": {
-    "name": "sGroundTileset",
-    "path": "sprites/sGroundTileset/sGroundTileset.yy",
+    "name": "sGrassTileset",
+    "path": "sprites/sGrassTileset/sGrassTileset.yy",
   },
   "tileWidth": 16,
   "tileHeight": 16,

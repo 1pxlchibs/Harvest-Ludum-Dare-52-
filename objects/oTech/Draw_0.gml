@@ -6,8 +6,3 @@ if (tech_struct != -1){
 	sprite_index = asset_get_index("spr_"+tech_struct.id);
 	draw_sprite(sprite_index,image_index,x,y);
 }
-
-
-
-
-
