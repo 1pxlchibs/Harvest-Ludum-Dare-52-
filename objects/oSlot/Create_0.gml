@@ -1,4 +1,5 @@
 event_inherited();
+hover = false;
 
 clicked = function(){
 	//if slot not empty
@@ -97,12 +98,12 @@ alt_clicked = function(){
 }
 
 cursorIn = function(){
-	return point_in_rectangle(oCursor.xGui, oCursor.yGui, x - sprite_width / 2, y - sprite_height / 2 - 2, x + sprite_width / 2, y + sprite_height / 2 - 2);	
+	return point_in_rectangle(oCursor.xGui, oCursor.yGui, x+invID.xx - sprite_width / 2, y+invID.yy - sprite_height / 2 - 2, x + sprite_width / 2, y + sprite_height / 2 - 2);	
 }
 
 step = function(){
 	if (inventoryRef[inventoryPos] != -1){
-		if (inventoryRef[inventoryPos].stack	< 1){
+		if (inventoryRef[inventoryPos].stack < 1){
 			array_set(inventoryRef,inventoryPos, -1);
 		}
 	}
@@ -128,11 +129,20 @@ drawGUI = function(){
 	}
 	
 	draw_set_color(_color);
-	draw_sprite(sprite_index, image_index, x, y);	
+	draw_sprite(sprite_index, image_index, x+invID.xx, y+invID.yy);	
 	if (inventoryRef[inventoryPos] != -1){
-		draw_set_halign(fa_middle);
-		draw_set_valign(fa_middle);
 		var _sprite = asset_get_index("spr_"+inventoryRef[inventoryPos].id);
+		var width = sprite_get_width(_sprite);
+		var height = sprite_get_height(_sprite);
+
+		var xoffset = sprite_get_xoffset(_sprite);
+		var yoffset = sprite_get_yoffset(_sprite);
+		
+		var xmid = width/2-xoffset;
+		var ymid = height/2-yoffset;
+		var _x = x+invID.xx-xmid;
+		var _y = y+invID.yy-ymid;
+		
 		var _image = 0;
 		switch(inventoryRef[inventoryPos].type){
 			case "vegetable":
@@ -143,13 +153,13 @@ drawGUI = function(){
 			break;
 		}
 			
-		draw_sprite(_sprite, _image, x, y);
-		draw_set_halign(fa_left);
-		draw_set_valign(fa_top);
+		draw_sprite(_sprite, _image, _x, _y);
+
 		
 		if (inventoryRef[inventoryPos].stack > 1){
-			draw_text(x, y, string(inventoryRef[inventoryPos].stack));
+			scribble("[fDefaultBold]"+string(inventoryRef[inventoryPos].stack)).blend(#B7DDEA,1).transform(0.5,0.5,0).draw(x+invID.xx+4, y+invID.yy+4);
 		}
 	}
 	draw_set_color(c_white);
 }
+	

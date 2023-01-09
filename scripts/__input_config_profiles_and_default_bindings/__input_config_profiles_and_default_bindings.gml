@@ -19,6 +19,7 @@ INPUT_DEFAULT_PROFILES = {
         right: [input_binding_key(vk_right), input_binding_key("D")],
 		
         interact: input_binding_key("E"),
+		inventory: input_binding_key(vk_tab),
 		nextItem: input_binding_mouse_wheel_down(),
 		previousItem: input_binding_mouse_wheel_up(),
         

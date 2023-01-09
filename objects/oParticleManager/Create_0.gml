@@ -12,3 +12,23 @@ with(part_dust){
 	part_speed(0.4,0.8,-0.1,0);
 	part_image(sCircle,0,c_white,false,false,false);
 }
+
+part_dirt = new advanced_part_type();
+with(part_dirt){
+	part_life(30,60);
+	part_size(1,1.5,-0.02,0);
+	part_orientation(0,0,0,0,false);
+	part_direction(0,180,0,0);
+	part_speed(0.4,0.8,-0.1,0);
+	part_image(sParticleDirt,0,c_white,false,false,false);
+}
+
+part_bolt = new advanced_part_type();
+with(part_bolt){
+	part_life(30,60);
+	part_size(1,1.5,-0.02,0);
+	part_orientation(0,0,0,0,false);
+	part_direction(0,180,0,0);
+	part_speed(0.4,0.8,-0.1,0);
+	part_image(sParticleLightningBolt,0,c_white,false,false,false);
+}

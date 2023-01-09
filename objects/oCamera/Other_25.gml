@@ -10,8 +10,8 @@ createCamera = function(){
 
 clampToRoom = function(){
 	//clamp the camera to the room size
-	x = clamp(x,0,room_width-global.settings.inGameResW);
-	y = clamp(y,0,room_height-global.settings.inGameResH);
+	x = clamp(x,32,room_width-global.settings.inGameResW-32);
+	y = clamp(y,32,room_height-global.settings.inGameResH-32);
 }
 
 moveToPoint = function(xx,yy){

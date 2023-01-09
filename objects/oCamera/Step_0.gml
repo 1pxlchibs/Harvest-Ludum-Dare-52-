@@ -7,6 +7,8 @@ zoom = 1;
 xOffset = ease(xOffset,0,camSpeed,Easings.LINEAR);
 yOffset = ease(yOffset,0,camSpeed,Easings.LINEAR);
 
+moveToObject(oPlayer);
+
 //clamp the camera to room
 clampToRoom();
 

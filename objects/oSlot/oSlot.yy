@@ -35,7 +35,7 @@
   ],
   "overriddenProperties": [],
   "parent": {
-    "name": "PXLInventory",
-    "path": "folders/PXLEngine/PXLInventory.yy",
+    "name": "Regular",
+    "path": "folders/PXLEngine/PXLInventory/Regular.yy",
   },
 }

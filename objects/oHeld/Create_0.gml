@@ -57,6 +57,9 @@ fsm
 								case "hoe":
 									dig_spot(interact_x,interact_y);
 								break;
+								case "wrench":
+									remove_tech(interact_x,interact_y);
+								break;
 							}
 						break;
 						case "crop":

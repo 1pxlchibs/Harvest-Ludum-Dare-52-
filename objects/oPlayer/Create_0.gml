@@ -32,7 +32,7 @@ update_held();
 sprite_index = get_sprite("idle");
 
 fsm
-	.event_set_default_function("draw",function() {
+	.event_set_default_function("draw",function(){
 		//draw this no matter what state we are in
 		if (instance_exists(oHeld)){
 			draw_sprite_ext(sSelection,current_time/100,oHeld.interact_x_lerp,oHeld.interact_y_lerp,1,1,0,c_white,0.6);
@@ -42,7 +42,6 @@ fsm
 		draw_sprite_ext(hand_back, image_index, x, y, face * image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 		draw_sprite_ext(sprite_index, image_index, x, y, face * image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 		draw_sprite_ext(hand_front, image_index, x, y, face * image_xscale, image_yscale, image_angle, image_blend, image_alpha);
-		draw_text(x,y,string(oController.power_level));
 	})
 	.add("idle",{
 		enter : function(){

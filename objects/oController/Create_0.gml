@@ -8,6 +8,8 @@ resolutionSelected = 0;
 
 athing = false;
 
+scribble_font_set_default("fDefault");
+
 #region ------------------SETTINGS------------------
 global.resolution[0][0] = 1280;
 global.resolution[0][1] = 720;
@@ -35,20 +37,19 @@ global.inventoryManager = {
 
 global.playerInv = array_create(16,-1);
 
-player_inventory = pxl_inventory_create(10,50,global.playerInv);
-
 pxl_inventory_add(global.playerInv,pxl_data_get_item("hoe"),1);
-pxl_inventory_add(global.playerInv,pxl_data_get_item("solar_panel_1"),2);
-pxl_inventory_add(global.playerInv,pxl_data_get_item("carrot_seeds"),8);
-pxl_inventory_add(global.playerInv,pxl_data_get_item("potato_seeds"),4);
+pxl_inventory_add(global.playerInv,pxl_data_get_item("wrench"),1);
+pxl_inventory_add(global.playerInv,pxl_data_get_item("solar_panel_1"),1);
+pxl_inventory_add(global.playerInv,pxl_data_get_item("beetroot_seeds"),8);
 #endregion
 
 instance_create_depth(0,0,D_CAMERA,oCamera);
 instance_create_depth(0,0,D_GUI_OVERTOP,oCursor);
 instance_create_depth(0,0,D_GUI_OVERTOP,oParticleManager);
 instance_create_depth(0,0,D_GUI_OVERTOP,oTimeWeather);
+instance_create_depth(0,0,D_GUI_BOTTOM,oHud);
 
-bulbRenderer = new BulbRenderer(#f9c57d, BULB_MODE.HARD_BM_ADD, true);
+bulbRenderer = new BulbRenderer(c_black, BULB_MODE.HARD_BM_ADD, true);
 
 timers = new PXLTimer();
 
@@ -56,5 +57,14 @@ timers.add("lootpitch",2*game_get_speed(gamespeed_fps));
 
 lootpitch = 1;
 
-money = 0;
-power_level = 0;
+fadein_alpha = 1;
+
+audio_play_sound(choose(sndMainMenu,sndGameplay),10,true);
+
+global.stats = {
+	money: 0,
+	power_level: 0
+}
+
+dayEnded = 0;
+dayEndedMoney = 0;

@@ -131,6 +131,7 @@ update_held = function(){
 		}
 	}
 }
+	
 //set_direction_sprite = function(){
 //	if (vspd <= 0 and hspd = 0){
 //		sprite_index = get_sprite("run_back");
