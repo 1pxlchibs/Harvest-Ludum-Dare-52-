@@ -1,5 +1,5 @@
 function toTile(val, size = 16){
-	return round(val/size)*size;
+	return floor(val/size)*size;
 }
 
 function vector2(_x,_y) constructor{

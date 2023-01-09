@@ -3,7 +3,7 @@ fsm.step();
 x = oPlayer.x;
 y = oPlayer.y;
 
-depth = oPlayer.depth-1;
+depth = oPlayer.depth+1;
 
 interact_x_lerp = lerp(interact_x_lerp,interact_x,0.3);
 interact_y_lerp = lerp(interact_y_lerp,interact_y,0.3);

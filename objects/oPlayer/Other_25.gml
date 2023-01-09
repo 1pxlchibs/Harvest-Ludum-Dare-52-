@@ -1,19 +1,57 @@
 init_sprite = function(){
+	hand_front = 0;
+	hand_back = 0;
+
 	sprites = {
-		idle: sPlayer,
+		idle: sCharacterIdle,
+		run: sCharacterRun,
+		idle_hand_front: sCharacterHandFrontIdle,
+		idle_hand_back: sCharacterHandBackIdle,
+		run_hand_front: sCharacterHandFrontRun,
+		run_hand_back: sCharacterHandBackRun,
+		hold_hand_front: sCharacterHandFrontHold,
+		hold_hand_back: sCharacterHandBackHold,
+	}
+	
+	hand_track = {
+		idle: [
+			{x: 3, y: 1},
+			{x: 3, y: 0},
+			{x: 3, y: 0},
+			{x: 3, y: 1}
+		],
+		run: [
+			{x: -2, y: -2},
+			{x: -1, y: -1},
+			{x: 1, y: 0},
+			{x: 3, y: -1},
+			{x: 4, y: -3},
+			{x: 4, y: -4},
+			{x: 3, y: -2},
+			{x: 2, y: -1},
+		]
 	}
 }
+
+get_hand_track = function(name = -1){
+	if (name != -1){
+		return hand_track[$ name];
+	}
+	
+	return hand_track[$ fsm.get_current_state()];
+}	
 
 get_sprite = function(name = -1){
 	if (name != -1){
 		return sprites[$ name];
 	}
+	
 	return sprites[$ fsm.get_current_state()];
 }
 
 set_facing = function(){
-	if (hspd < 0) {face = -1;} 
-	if (hspd > 0) {face = 1;}	
+	if (xx < 0) {face = -1;} 
+	if (xx > 0) {face = 1;}	
 }
 	
 get_input = function(){
@@ -45,6 +83,13 @@ get_move = function(){
 	}
 	
 	x+=hspd;	
+	
+	hspd=xx*spd;
+	vspd=yy*spd;
+	
+	direction = point_direction(0,0,xx,yy);
+	hspd = lengthdir_x(spd*delta_time_get(),direction);
+	vspd = lengthdir_y(spd*delta_time_get(),direction);
 }
 
 switch_held = function(){
@@ -68,6 +113,9 @@ switch_held = function(){
 }
 
 update_held = function(){
+	hand_back = get_sprite(fsm.get_current_state()+"_hand_back");
+	hand_front = get_sprite(fsm.get_current_state()+"_hand_front");
+	
 	instance_destroy(oHeld);
 	
 	var _struct = pxl_inventory_get(global.playerInv,currentHeld);

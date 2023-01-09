@@ -132,8 +132,18 @@ drawGUI = function(){
 	if (inventoryRef[inventoryPos] != -1){
 		draw_set_halign(fa_middle);
 		draw_set_valign(fa_middle);
-		var _string = inventoryRef[inventoryPos].name;
-		draw_text(x, y, _string);
+		var _sprite = asset_get_index("spr_"+inventoryRef[inventoryPos].id);
+		var _image = 0;
+		switch(inventoryRef[inventoryPos].type){
+			case "vegetable":
+				var _sprite = asset_get_index("spr_"+inventoryRef[inventoryPos].id+"_icon");
+			break;
+			case "fruit":
+				var _sprite = asset_get_index("spr_"+inventoryRef[inventoryPos].id+"_icon");
+			break;
+		}
+			
+		draw_sprite(_sprite, _image, x, y);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_top);
 		

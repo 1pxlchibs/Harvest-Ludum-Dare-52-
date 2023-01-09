@@ -9,6 +9,11 @@ interact_y = y;
 interact_x_lerp = x;
 interact_y_lerp = y;
 
+track_array = -1;
+
+x_offset = 0;
+y_offset = 0;
+
 use = false;
 
 timers = new PXLTimer();
@@ -20,7 +25,7 @@ fsm = new SnowState("idle");
 fsm
 	.event_set_default_function("draw",function() {
 		sprite_index = asset_get_index("spr_"+item_struct.id);
-		draw_sprite_ext(sprite_index,image_index,x,y,oPlayer.face * 1,1,350,c_white,1);
+		draw_sprite_ext(sprite_index,image_index,x+x_offset*oPlayer.face,y+y_offset,oPlayer.face * 1,1,0,c_white,1);
 	})
 	.add("idle",{
 		enter: function(){
@@ -36,21 +41,6 @@ fsm
 			if (use){
 				fsm.change("active");
 				return;
-			}
-			
-			switch(item_struct.type){
-				case "tool":
-					image_index = 0;
-				break;
-				case "crop":
-					image_index = 0;
-				break;
-				case "vegetable":
-					image_index = image_number-1;
-				break;
-				case "fruit":
-					image_index = image_number-1;
-				break;
 			}
 		}
 	})
@@ -71,6 +61,9 @@ fsm
 						break;
 						case "crop":
 							plant_spot(interact_x,interact_y);
+						break;
+						case "tech":
+							place_tech(interact_x,interact_y);
 						break;
 					}
 					

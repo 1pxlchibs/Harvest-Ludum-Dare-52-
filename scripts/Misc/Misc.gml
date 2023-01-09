@@ -71,3 +71,12 @@ function database_get_array_filtered(source, key, value){
 	
 	return _newArray;
 }
+
+function draw_spot_shadow(xoffset = 0,yoffset = 0,xscale = 1,yscale = 1,alpha = 1) {
+
+	var tw = sprite_get_bbox_left(mask_index)-sprite_get_bbox_right(mask_index);
+	var tb = sprite_get_bbox_bottom(sprite_index)-sprite_get_bbox_bottom(sprite_index);
+
+	draw_sprite_ext(sSpotShadow,0,x+xoffset,y+tb+yoffset,xscale,yscale,0,c_white,alpha);
+	draw_set_alpha(1);
+}

@@ -10,8 +10,6 @@ for(var i = 0; i < array_length(inventory); i++;){
 }
 
 drawGUI = function(){
-
-	
 	if (global.inventoryManager.itemCurrent != -1){
 		var _string = global.inventoryManager.itemCurrent.name;
 		draw_text(oCursor.xGui, oCursor.yGui, _string);
