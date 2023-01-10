@@ -9,25 +9,21 @@ clicked = function(){
 			//if slot has same item as held and can be stacked, stack it
 			if (global.inventoryManager.itemCurrent.id = inventoryRef[inventoryPos].id){
 				inventoryRef[inventoryPos].stack += global.inventoryManager.itemCurrent.stack;
-				
-				//clear old slot
-				array_set(global.inventoryManager.itemOldInventory, global.inventoryManager.itemOldPos, -1);
 			
 				//clear item
 				global.inventoryManager.itemCurrent = -1;
 				global.inventoryManager.itemOldPos = -1;
 				global.inventoryManager.itemOldInventory = -1;
 			} else{
-				//replace old slot with new slot
-				array_set(global.inventoryManager.itemOldInventory, global.inventoryManager.itemOldPos, inventoryRef[inventoryPos]);
-			
-				//place item to new slot
+				//grab the item from new slot
+				var _struct = variable_struct_copy(inventoryRef[inventoryPos]);
+				//place item held to new slot
 				inventoryRef[inventoryPos] = variable_struct_copy(global.inventoryManager.itemCurrent);
 				
 				//clear item
 				global.inventoryManager.itemOldPos = -1;
 				global.inventoryManager.itemOldInventory= -1;
-				global.inventoryManager.itemCurrent = -1;
+				global.inventoryManager.itemCurrent = _struct;
 			}
 		} else{
 			//if not holding an item

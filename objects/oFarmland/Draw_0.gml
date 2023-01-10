@@ -1,8 +1,8 @@
 draw_self();
 
 
-if (plant != -1){
-	draw_sprite(asset_get_index("spr_"+plant.returns+"_crop"),plant.currentStage,x,y);
+if (data != -1){
+	draw_sprite(asset_get_index("spr_"+data.returns+"_crop"),data.currentStage,x,y);
 	
 	//if (grown){
 	//	loot_shine += 0.2;

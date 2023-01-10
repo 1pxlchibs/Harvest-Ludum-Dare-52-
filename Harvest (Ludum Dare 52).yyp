@@ -181,6 +181,7 @@
     {"id":{"name":"spr_wrench","path":"sprites/spr_wrench/spr_wrench.yy",},"order":1,},
     {"id":{"name":"input_binding_is_valid","path":"scripts/input_binding_is_valid/input_binding_is_valid.yy",},"order":6,},
     {"id":{"name":"pxlui_button","path":"scripts/pxlui_button/pxlui_button.yy",},"order":3,},
+    {"id":{"name":"PXLSaveLoad","path":"scripts/PXLSaveLoad/PXLSaveLoad.yy",},"order":1,},
     {"id":{"name":"input_binding_gamepad_axis","path":"scripts/input_binding_gamepad_axis/input_binding_gamepad_axis.yy",},"order":1,},
     {"id":{"name":"input_binding_get_icon","path":"scripts/input_binding_get_icon/input_binding_get_icon.yy",},"order":3,},
     {"id":{"name":"spr_pumpkin_crop","path":"sprites/spr_pumpkin_crop/spr_pumpkin_crop.yy",},"order":38,},

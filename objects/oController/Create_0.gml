@@ -59,12 +59,12 @@ lootpitch = 1;
 
 fadein_alpha = 1;
 
-audio_play_sound(choose(sndMainMenu,sndGameplay),10,true);
-
 global.stats = {
-	money: 0,
+	money: 1000,
 	power_level: 0
 }
 
 dayEnded = 0;
 dayEndedMoney = 0;
+
+pxl_load();

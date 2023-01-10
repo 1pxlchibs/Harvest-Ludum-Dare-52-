@@ -55,7 +55,7 @@ function pxl_inventory_remove_pos(array, pos, amount = 1){
 			array[pos].stack -= amount;
 		}
 		
-		if (_amount <= 0){
+		if (_amount <= 1){
 			array[pos] = -1;
 		}
 	}
