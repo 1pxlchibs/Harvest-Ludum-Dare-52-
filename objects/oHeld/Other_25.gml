@@ -39,8 +39,8 @@ plant_spot = function(x, y){
 		with(_inst){
 			if (data = -1){
 				day = global.time.day;
-				data = pxl_data_get_item(global.playerInv[oPlayer.currentHeld].id);
-				pxl_inventory_remove_pos(global.playerInv, oPlayer.currentHeld);
+				data = pxl_data_get_item(global.playerInv[other.ownerId.currentHeld].id);
+				pxl_inventory_remove_pos(global.playerInv, other.ownerId.currentHeld);
 				audio_play_sound(sndPlanting,10,false);
 				
 				repeat(16){
@@ -68,8 +68,8 @@ place_tech = function(x, y){
 			instance_destroy(_inst);
 		} else{
 			with(instance_create_depth(x,y,-y,oTech)){
-				data = pxl_data_get_item(global.playerInv[oPlayer.currentHeld].id);
-				pxl_inventory_remove_pos(global.playerInv, oPlayer.currentHeld);
+				data = pxl_data_get_item(global.playerInv[other.ownerId.currentHeld].id);
+				pxl_inventory_remove_pos(global.playerInv, other.ownerId.currentHeld);
 			}
 			audio_play_sound(sndPlanting,10,false);
 		}
@@ -77,9 +77,6 @@ place_tech = function(x, y){
 }
 
 remove_tech = function(x, y){
-	var lay_id = layer_get_id("TilesSoil");
-	var map_id = layer_tilemap_get_id(lay_id);
-	
 	var _inst = collision_point(x, y, oTech, true, false);
 	if (_inst != noone){
 		with(_inst){
@@ -89,4 +86,16 @@ remove_tech = function(x, y){
 		}
 		instance_destroy(_inst);
 	}
+}
+
+chop = function(x, y){
+	var _inst = collision_point(x, y, oTree, true, false);
+	if (_inst != noone){
+		with(_inst){
+			hit = true;
+			shake = 2;
+		}
+		audio_play_sound(choose(sndAxe1,sndAxe2,sndAxe3),10,false);
+	}
+	
 }

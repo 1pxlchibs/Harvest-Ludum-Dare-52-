@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "oBirchTree",
   "spriteId": {
-    "name": "sBirchTree",
-    "path": "sprites/sBirchTree/sBirchTree.yy",
+    "name": "spr_tree_birch",
+    "path": "sprites/spr_tree_birch/spr_tree_birch.yy",
   },
   "solid": false,
   "visible": true,
@@ -12,8 +12,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "oParentCollider",
-    "path": "objects/oParentCollider/oParentCollider.yy",
+    "name": "oTree",
+    "path": "objects/oTree/oTree.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

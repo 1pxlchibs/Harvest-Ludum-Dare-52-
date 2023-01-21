@@ -38,18 +38,19 @@ global.inventoryManager = {
 global.playerInv = array_create(16,-1);
 
 pxl_inventory_add(global.playerInv,pxl_data_get_item("hoe"),1);
+pxl_inventory_add(global.playerInv,pxl_data_get_item("axe"),1);
 pxl_inventory_add(global.playerInv,pxl_data_get_item("wrench"),1);
 pxl_inventory_add(global.playerInv,pxl_data_get_item("solar_panel_1"),1);
 pxl_inventory_add(global.playerInv,pxl_data_get_item("beetroot_seeds"),8);
 #endregion
 
-instance_create_depth(0,0,D_CAMERA,oCamera);
-instance_create_depth(0,0,D_GUI_OVERTOP,oCursor);
-instance_create_depth(0,0,D_GUI_OVERTOP,oParticleManager);
-instance_create_depth(0,0,D_GUI_OVERTOP,oTimeWeather);
-instance_create_depth(0,0,D_GUI_BOTTOM,oHud);
+global.time = {
+	day : 0,
+	hour : 6,
+	minute : 0
+}
 
-bulbRenderer = new BulbRenderer(c_black, BULB_MODE.HARD_BM_ADD, true);
+bulbRenderer = new BulbRenderer(#bd4035, BULB_MODE.HARD_BM_ADD, true);
 
 timers = new PXLTimer();
 
@@ -68,3 +69,9 @@ dayEnded = 0;
 dayEndedMoney = 0;
 
 pxl_load();
+
+instance_create_depth(0,0,D_CAMERA,oCamera);
+instance_create_depth(0,0,D_GUI_OVERTOP,oCursor);
+instance_create_depth(0,0,D_GUI_OVERTOP,oParticleManager);
+instance_create_depth(0,0,D_GUI_OVERTOP,oTimeWeather);
+instance_create_depth(0,0,D_GUI_BOTTOM,oHud);

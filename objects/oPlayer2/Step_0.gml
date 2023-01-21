@@ -1,0 +1,9 @@
+depth = -y;
+
+mask_index = get_sprite("idle");
+
+gtfo(oParentCollider);
+
+if (!oHud.showInventory && !oDropbox.showInventory && !oController.dayEnded){
+	fsm.step();
+}

@@ -1,5 +1,7 @@
 event_user(15);
 
+ownerId = oPlayer;
+
 item_struct = -1;
 image_speed = 0;
 
@@ -14,6 +16,8 @@ track_array = -1;
 x_offset = 0;
 y_offset = 0;
 
+angle = 0;
+
 use = false;
 
 timers = new PXLTimer();
@@ -24,8 +28,9 @@ fsm = new SnowState("idle");
 
 fsm
 	.event_set_default_function("draw",function() {
+
 		sprite_index = asset_get_index("spr_"+item_struct.id);
-		draw_sprite_ext(sprite_index,image_index,x+x_offset*oPlayer.face,y+y_offset,oPlayer.face * 1,1,0,c_white,1);
+		draw_sprite_ext(sprite_index,image_index,x+x_offset*ownerId.face,y+y_offset,ownerId.face * 1, 1,ownerId.face * angle,c_white,1);
 	})
 	.add("idle",{
 		enter: function(){
@@ -35,8 +40,8 @@ fsm
 			interact_x = toTile(oCursor.x);
 			interact_y = toTile(oCursor.y);
 
-			interact_x = clamp(interact_x,toTile(oPlayer.x-16),toTile(oPlayer.x+16));
-			interact_y = clamp(interact_y,toTile(oPlayer.y-16),toTile(oPlayer.y+16));
+			interact_x = clamp(interact_x,toTile(ownerId.x-16),toTile(ownerId.x+16));
+			interact_y = clamp(interact_y,toTile(ownerId.y-16),toTile(ownerId.y+16));
 			
 			if (use){
 				fsm.change("active");
@@ -59,6 +64,9 @@ fsm
 								break;
 								case "wrench":
 									remove_tech(interact_x,interact_y);
+								break;
+								case "axe":
+									chop(interact_x,interact_y);
 								break;
 							}
 						break;

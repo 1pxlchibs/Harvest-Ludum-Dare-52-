@@ -50,7 +50,7 @@ function RoomToGui(_x, _y) {
 	}
 }
 
-///@description GuiToRoomi(x, y)
+///@description GuiToRoom(x, y)
 function GuiToRoom(_x, _y){
 	//insert the x gui position you want to follow and they will be relatively placed on in the room
 	var cx = camera_get_view_x(view_camera[0]);

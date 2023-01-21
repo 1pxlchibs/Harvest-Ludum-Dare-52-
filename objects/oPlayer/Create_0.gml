@@ -1,6 +1,4 @@
 // Declare methods
-
-
 currentHeld = 0;
 
 face = 1;
@@ -61,10 +59,6 @@ fsm
 					fsm.change("use");
 					return;
 				}
-				if (input_check_pressed("alt_shoot")){
-					fsm.change("alt_use");
-					return;
-				}
 			}
 		}
 	})
@@ -104,19 +98,22 @@ fsm
 	})
 	.add("use",{
 		enter : function(){
-			with(oHeld){
-				use = true;
-			}
-			hand_back = get_sprite("idle_hand_back");
+			hand_back = get_sprite("tool_hand_back");
 			hand_front = get_sprite("idle_hand_front");
-			sprite_index = get_sprite("idle");
+			sprite_index = get_sprite("tool");
 			image_index = 0;
 		},
 		step : function(){
-			if (timers.step("interact", true)){
+			set_facing_cursor();
+			if (animation_end()){
 				fsm.change("idle");
 				return;
 			}
+		},
+		tool : function(){
+			with(oHeld){
+				use = true;
+			}	
 		}
 	})
 	.add("alt_use",{

@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "oOakTree",
   "spriteId": {
-    "name": "sOakTree",
-    "path": "sprites/sOakTree/sOakTree.yy",
+    "name": "spr_tree_oak",
+    "path": "sprites/spr_tree_oak/spr_tree_oak.yy",
   },
   "solid": false,
   "visible": true,
@@ -12,8 +12,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "oParentCollider",
-    "path": "objects/oParentCollider/oParentCollider.yy",
+    "name": "oTree",
+    "path": "objects/oTree/oTree.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

@@ -3,6 +3,9 @@
 function pxl_inventory_create(x,y,array, columns = 4){
 	var _x = x+16;
 	var _y = y+16;
+	if (is_string(array)){
+		array = variable_instance_get(id,array);	
+	}
 	return instance_create_depth(_x, _y, D_GUI_MIDDLE, oInventory, {
 		inventory : array,
 		columns : columns

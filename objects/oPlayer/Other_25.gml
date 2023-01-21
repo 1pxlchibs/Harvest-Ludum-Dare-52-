@@ -5,30 +5,38 @@ init_sprite = function(){
 	sprites = {
 		idle: sCharacterIdle,
 		run: sCharacterRun,
+		tool: sCharacterTool,
 		idle_hand_front: sCharacterHandFrontIdle,
 		idle_hand_back: sCharacterHandBackIdle,
 		run_hand_front: sCharacterHandFrontRun,
 		run_hand_back: sCharacterHandBackRun,
 		hold_hand_front: sCharacterHandFrontHold,
 		hold_hand_back: sCharacterHandBackHold,
+		tool_hand_back: sCharacterHandBackTool,
 	}
 	
 	hand_track = {
 		idle: [
-			{x: 3, y: 1},
-			{x: 3, y: 0},
-			{x: 3, y: 0},
-			{x: 3, y: 1}
+			{x: 3, y: 1, angle: 0},
+			{x: 3, y: 0, angle: 0},
+			{x: 3, y: 0, angle: 0},
+			{x: 3, y: 1, angle: 0}
 		],
 		run: [
-			{x: -2, y: -2},
-			{x: -1, y: -1},
-			{x: 1, y: 0},
-			{x: 3, y: -1},
-			{x: 4, y: -3},
-			{x: 4, y: -4},
-			{x: 3, y: -2},
-			{x: 2, y: -1},
+			{x: -2, y: -2, angle: 0},
+			{x: -1, y: -1, angle: 0},
+			{x: 1, y: 0, angle: 0},
+			{x: 3, y: -1, angle: 0},
+			{x: 4, y: -3, angle: 0},
+			{x: 4, y: -4, angle: 0},
+			{x: 3, y: -2, angle: 0},
+			{x: 2, y: -1, angle: 0},
+		],
+		use: [ 
+			{x: 2, y: 0, angle: 0},
+			{x: 5, y: -4, angle: 20},
+			{x: 6, y: 1, angle: -80},
+			{x: 0, y: 2, angle: -40},
 		]
 	}
 }
@@ -52,6 +60,11 @@ get_sprite = function(name = -1){
 set_facing = function(){
 	if (xx < 0) {face = -1;} 
 	if (xx > 0) {face = 1;}	
+}
+
+set_facing_cursor = function(){
+	if (x > oHeld.interact_x_lerp) {face = -1;}
+	if (x < oHeld.interact_x_lerp) {face = 1;}
 }
 	
 get_input = function(){
@@ -116,17 +129,23 @@ update_held = function(){
 	hand_back = get_sprite(fsm.get_current_state()+"_hand_back");
 	hand_front = get_sprite(fsm.get_current_state()+"_hand_front");
 	
-	instance_destroy(oHeld);
+	with(oHeld){
+		if (ownerId = other.id){
+			instance_destroy();
+		}
+	}
 	
 	var _struct = pxl_inventory_get(global.playerInv,currentHeld);
 	if (_struct != -1){
 		if (!instance_exists(oHeld)){
 			with(instance_create_depth(x,y,-y,oHeld)){
 				item_struct = pxl_inventory_get(global.playerInv,other.currentHeld);
+				ownerId = other.id;
 			}
 		} else{
 			if (pxl_inventory_get(global.playerInv,currentHeld).id != oHeld.item_struct.id){
 				item_struct = pxl_inventory_get(global.playerInv,currentHeld);
+				ownerId = other.id;
 			}
 		}
 	}
