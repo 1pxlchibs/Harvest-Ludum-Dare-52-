@@ -26,10 +26,10 @@ if (showInventory){
 		inventory = -1;
 	}
 	
-	for(var i = 0; i < 4; i++;){
+	for(var i = 0; i < 8; i++;){
 		var _sprite = sSlot;
 	
-		var _width = 4*(36);
+		var _width = 8*(36);
 
 		var xx = global.settings.inGameResW/2-_width/2+(i*36)+16;
 		var yy = global.settings.inGameResH-16;

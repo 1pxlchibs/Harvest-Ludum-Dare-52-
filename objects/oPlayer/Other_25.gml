@@ -63,8 +63,10 @@ set_facing = function(){
 }
 
 set_facing_cursor = function(){
-	if (x > oHeld.interact_x_lerp) {face = -1;}
-	if (x < oHeld.interact_x_lerp) {face = 1;}
+	if (instance_exists(oHeld)){
+		if (x > oHeld.interact_x_lerp) {face = -1;}
+		if (x < oHeld.interact_x_lerp) {face = 1;}
+	}
 }
 	
 get_input = function(){
@@ -108,7 +110,7 @@ get_move = function(){
 switch_held = function(){
 	if (input_check("nextItem")){
 		currentHeld++;
-		if (currentHeld > 3){
+		if (currentHeld > 7){
 			currentHeld = 0;
 		}
 		
@@ -118,7 +120,7 @@ switch_held = function(){
 	if (input_check("previousItem")){
 		currentHeld--;
 		if (currentHeld < 0){
-			currentHeld = 3;
+			currentHeld = 7;
 		}
 		
 		update_held();

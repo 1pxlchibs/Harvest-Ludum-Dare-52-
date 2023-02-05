@@ -35,7 +35,7 @@ global.inventoryManager = {
 	itemOldInventory : -1
 }
 
-global.playerInv = array_create(16,-1);
+global.playerInv = array_create(32,-1);
 
 pxl_inventory_add(global.playerInv,pxl_data_get_item("hoe"),1);
 pxl_inventory_add(global.playerInv,pxl_data_get_item("axe"),1);

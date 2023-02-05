@@ -30,6 +30,7 @@ if (global.time.hour = 23){
 }
 
 color = merge_color(colors[current_color],colors[next_color],global.time.minute/60);
+oController.bulbRenderer.SetAmbientColor(color);
 
 gameTimer = time_source_create(time_source_game, 2, time_source_units_seconds, function(){
 	global.time.minute+=5;
